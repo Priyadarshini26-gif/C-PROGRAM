@@ -1,0 +1,23 @@
+#include<stdio.h>
+
+int ways(int n) {
+    int dp[n + 1]; // Create dp array
+    dp[0] = 1; // Base case: 1 way to reach 0 runs
+    for (int i = 1; i <= n; i++) {
+        dp[i] = 0; // Initialize dp[i] to 0
+        if (i >= 1) dp[i] += dp[i - 1];
+        if (i >= 2) dp[i] += dp[i - 2];
+        if (i >= 3) dp[i] += dp[i - 3];
+    }
+    return dp[n]; // Number of ways to reach n runs
+}
+
+int main() {
+    int n;
+    printf("Enter target score: ");
+    scanf("%d", &n);
+
+    printf("No. of ways to reach %d is %d by scoring 1, 2, or 3 runs per ball\n", n, ways(n));
+
+    return 0;
+}
